@@ -1,0 +1,12 @@
+{
+  "numResolucion": 18760000001,
+  "periodoAutorizacion": {
+    "fechaDesde": "2019-01-19",
+    "fechaHasta": "2030-01-19"
+  },
+  "facturasAutorizadas": {
+    "prefijo": "SETP",
+    "desde": 990000000,
+    "hasta": 995000000
+  }
+}
