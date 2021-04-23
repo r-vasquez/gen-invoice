@@ -1,5 +1,4 @@
-... Under development. Not MVP ready.
-
+... It's a proof of concept to check it's viability/ease of implementation using Go.
 ## Usage
 
 ```
