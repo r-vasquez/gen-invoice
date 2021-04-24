@@ -1,27 +1,18 @@
 package main
 
 import (
-	"encoding/json"
-	"encoding/xml"
 	"flag"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"os"
 
-	"github.com/r-vasquez/gen-invoice/dataModel/dianExtensions"
+	"github.com/r-vasquez/gen-invoice/invoice"
 )
 
 func handleError(e error) {
 	if e != nil {
 		log.Fatal(e)
 	}
-}
-
-// Util: Print idented json
-func prettyPrint(i interface{}) string {
-	s, _ := json.MarshalIndent(i, "", "  ")
-	return string(s)
 }
 
 func setFlags() (*string, *string) {
@@ -52,18 +43,6 @@ func main() {
 	handleError(err)
 	defer invoiceFile.Close()
 
-	byteValue, _ := ioutil.ReadAll(invoiceFile)
-
-	// Parse Json Invoice to InvoiceControl Struct
-	var invoiceControl dianExtensions.InvoiceControl
-	e := json.Unmarshal(byteValue, &invoiceControl)
-	handleError(e)
-
-	fmt.Println("Input Invoice ->\n", prettyPrint(invoiceControl))
-
-	fmt.Println("Output XML ->")
-	outputXml, err := xml.MarshalIndent(invoiceControl, "", "    ")
-	handleError(err)
-	os.Stdout.Write(outputXml)
-	_ = ioutil.WriteFile(*outputPath, outputXml, 0644)
+	invoiceControl := invoice.GenInvoice(invoiceFile)
+	invoice.WriteInvoiceToFile(invoiceControl, outputPath)
 }

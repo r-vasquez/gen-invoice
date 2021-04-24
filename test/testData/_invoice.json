@@ -1,0 +1,12 @@
+{
+  "invoiceAuthorization": 18760000001,
+  "authorizationPeriod": {
+    "startDate": "2019-01-19",
+    "endDate": "2030-01-19"
+  },
+  "authorizedInvoices": {
+    "prefix": "SETP",
+    "from": 990000000,
+    "to": 995000000
+  }
+}
